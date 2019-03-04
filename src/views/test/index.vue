@@ -11,7 +11,7 @@
         <p>test msg 第2种方式输出：{{testGetMsg}}</p>
         <p>test msg 第3种方式输出：{{testGetMsg2}}</p>
         <el-button @click="testUpdateMsg('update test msg')">更新test模块 msg</el-button>
-        <el-button @click="testClearMsg()">更新test模块 msg</el-button>
+        <el-button @click="testClearMsg()">清空test模块 msg</el-button>
     </div>
 </template>
 <script>

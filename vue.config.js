@@ -13,6 +13,7 @@ function resolve (dir) {
     return path.join(__dirname, dir)
 }
 module.exports = {
+    runtimeCompiler: true,
     lintOnSave: true,
     devServer: {
         open: true,
@@ -31,9 +32,15 @@ module.exports = {
         overlay: {
             warnings: true,
             errors: true
+        },
+        before: (app) => {
+            console.log('vue.config.js devServer.before', app)
         }
     },
     chainWebpack: (config) => {
         config.resolve.alias.set('@', resolve('src'))
+    },
+    css: {
+        loaderOptions: {}
     }
 }

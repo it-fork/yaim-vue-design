@@ -1,13 +1,5 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link>
-            |
-            <router-link to="/about">About</router-link>
-        </div>
-        <h1>
-            {{msg}}
-        </h1>
         <router-view/>
     </div>
 </template>
@@ -16,9 +8,7 @@
     export default {
         name: 'App',
         data () {
-            return {
-                msg: 'this is msg'
-            }
+            return {}
         },
         created () {
             this.$root.log(this.$store)

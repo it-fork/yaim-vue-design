@@ -26,7 +26,7 @@ module.exports = {
         'arrow-body-style': ['error', 'always'], // 要求箭头函数体使用大括号
         'vue/script-indent': ['error', 4, { 'baseIndent': 1 }], // *.vue 的文件中的script标签中的js内容必须缩进
         'indent': ['error', 4], // 缩进4个空格，编辑器可设置
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-console': process.env.NODE_ENV === 'production' ? 'off' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     },
     overrides: [
