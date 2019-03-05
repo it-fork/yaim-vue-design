@@ -6,6 +6,7 @@
 import Vue from 'vue'
 
 import Http from './plugins/http'
+import components from './components/global/'
 import directives from './directives/global/'
 import filters from './filters/global/'
 
@@ -21,6 +22,10 @@ Vue.use({
         // 注册全局过滤器
         Object.keys(filters).forEach((filterName) => {
             Vue.filter(filterName, filters[filterName])
+        })
+        // 注册全局组件
+        Object.keys(components).forEach((componentName) => {
+            Vue.component(components[componentName].name, components[componentName])
         })
     }
 })
