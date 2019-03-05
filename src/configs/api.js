@@ -3,10 +3,6 @@
  * @date 2019/3/3
  * @Description
  */
-import {
-    Message,
-    MessageBox
-} from 'element-ui'
 
 /**
  *  接口返回的消息字段名
@@ -44,7 +40,7 @@ export const codeErrorValue = 1
  * @param msg  错误消息
  */
 export const apiErrorCallback = (code, msg) => {
-    Message.error(msg)
+    console.error(msg)
 }
 
 /**
@@ -53,5 +49,5 @@ export const apiErrorCallback = (code, msg) => {
  * @param statusText HTTP状态消息
  */
 export const apiCatchCallback = (status, statusText) => {
-    MessageBox.alert(`${status} : ${statusText}`, '服务器异常')
+    console.error(`${status} : ${statusText}`, '服务器异常')
 }
