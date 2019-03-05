@@ -9,7 +9,6 @@ export default [{
     meta: {
         viewPath: 'test'
     },
-    redirect: 'vuex',
     children: [
         {
             path: 'vuex',
