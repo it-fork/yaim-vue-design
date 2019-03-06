@@ -56,7 +56,7 @@ overrides: [
 ### 组件
 
 ::: tip 全局组件
-**组件存放目录：[src/components/global/](https://github.com/yaimeet/yaim-vue-design/tree/master/src/components/global)，这里面写的每一个组件，都要在下面的index.js中导出，才能被全局自动注册，组件名称以组件中的[`name`](https://github.com/yaimeet/yaim-vue-design/blob/master/src/components/global/hello.vue)属性为准**
+**组件存放目录：[src/components/global/](https://github.com/yaimeet/yaim-vue-design/tree/master/src/components/global)，这里面写的每一个组件，都要在下面的[index.js](https://github.com/yaimeet/yaim-vue-design/tree/master/src/components/global/index.js)中导出，才能被全局自动注册，组件名称以组件中的[`name`](https://github.com/yaimeet/yaim-vue-design/blob/master/src/components/global/hello.vue)属性为准**
 
 <<< @/src/components/global/index.js
 :::
@@ -64,7 +64,7 @@ overrides: [
 ### 过滤器
 
 ::: tip 全局过滤器
-**过滤器存放目录：[src/filters/global/](https://github.com/yaimeet/yaim-vue-design/tree/master/src/filters/global)，这里面写的每一个过滤器，都要在下面的index.js中导出，才能被全局自动注册，过滤器注册名称，以 下面文件导出的`key`为准**
+**过滤器存放目录：[src/filters/global/](https://github.com/yaimeet/yaim-vue-design/tree/master/src/filters/global)，这里面写的每一个过滤器，都要在下面的[index.js](https://github.com/yaimeet/yaim-vue-design/tree/master/src/filters/global/index.js)中导出，才能被全局自动注册，过滤器注册名称，以 下面文件导出的`key`为准**
 
 <<< @/src/filters/global/index.js{9}
 :::
@@ -72,7 +72,7 @@ overrides: [
 ### 指令
 
 ::: tip 全局指令
-**指令存放目录：[src/directives/global/](https://github.com/yaimeet/yaim-vue-design/tree/master/src/directives/global)，这里面写的每一个指令，都要在下面的index.js中导出，才能被全局自动注册，指令注册名称，以 下面文件导出的`key`为准**
+**指令存放目录：[src/directives/global/](https://github.com/yaimeet/yaim-vue-design/tree/master/src/directives/global)，这里面写的每一个指令，都要在下面的[index.js](https://github.com/yaimeet/yaim-vue-design/tree/master/src/directives/global/index.js)中导出，才能被全局自动注册，指令注册名称，以 下面文件导出的`key`为准**
 
 <<< @/src/directives/global/index.js{9}
 :::
