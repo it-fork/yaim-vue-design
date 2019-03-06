@@ -1,5 +1,7 @@
 # yaim-vue-design
 
+> 基于Vue开发的设计模式
+
 ## Building
 
 ### Docs
@@ -11,5 +13,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dc123091-b7bc-4148-9709-af56f2dc90b8/deploy-status)](https://app.netlify.com/sites/brave-morse-326caf/deploys)
 
 
-### Customize configuration
-See [使用文档](https://doc.vue-design.org).
+### 使用文档
+查看 [使用文档](https://doc.vue-design.org).
