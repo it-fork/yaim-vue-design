@@ -26,11 +26,6 @@ module.exports = {
                 text: 'GitHub',
                 link: 'https://github.com/yaimeet/yaim-vue-design'
             }
-        ],
-        sidebar: [
-            ['/use', '使用'],
-            ['/dev', '开发'],
-            ['/config', '配置']
         ]
     },
     markdown: {
