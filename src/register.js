@@ -5,9 +5,16 @@
  */
 import Vue from 'vue'
 
+// 基于axios封装的HTTP
 import Http from './plugins/http'
+
+// 全局组件
 import components from './components/global/'
+
+// 全局指令
 import directives from './directives/global/'
+
+// 全局过滤器
 import filters from './filters/global/'
 
 Vue.use(Http)

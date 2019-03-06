@@ -8,6 +8,7 @@ module.exports = {
     description: '基于Vue设计的开发模式',
     themeConfig: {
         lastUpdated: '2019-03-05',
+        displayAllHeaders: true,
         nav: [
             {
                 text: '教程',
@@ -31,5 +32,8 @@ module.exports = {
             ['/dev', '开发'],
             ['/config', '配置']
         ]
+    },
+    markdown: {
+        lineNumbers: true
     }
 }
