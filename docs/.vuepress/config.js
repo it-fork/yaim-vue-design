@@ -11,7 +11,7 @@ module.exports = {
         nav: [
             {
                 text: '教程',
-                link: '/guide/'
+                link: '/'
             },
             {
                 text: '参考链接',
@@ -27,7 +27,6 @@ module.exports = {
             }
         ],
         sidebar: [
-            ['/', '首页'],
             ['/use', '使用'],
             ['/dev', '开发'],
             ['/config', '配置']
