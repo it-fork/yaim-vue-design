@@ -19,10 +19,6 @@
                 globalFilter: 1000,
                 scopeFilter: 'scopeFilter'
             }
-        },
-        created () {
-            // console.log(this.testUpdateMsg('update test msg'))
-        },
-        methods: {}
+        }
     }
 </script>
