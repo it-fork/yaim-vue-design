@@ -5,6 +5,7 @@
             <router-link to="/test/component">component</router-link>
             <router-link to="/test/filter">filter</router-link>
             <router-link to="/test/directive">directive</router-link>
+            <router-link to="/test/http">http</router-link>
         </div>
         <hr>
         <hr>

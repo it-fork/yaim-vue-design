@@ -37,6 +37,13 @@ export default [{
             meta: {
                 viewPath: 'test/directive.vue'
             }
+        },
+        {
+            path: 'http',
+            name: 'http 示例',
+            meta: {
+                viewPath: 'test/http.vue'
+            }
         }
     ]
 }]
