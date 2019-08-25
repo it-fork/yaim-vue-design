@@ -1,9 +1,9 @@
-/**
- * @author yaimeet
- * @date 2019/3/3
- * @Description
- */
-export const testApi = {
-    path: '/index/test',
-    type: 'get'
+const baseUrl = '/test'
+export const login = (data, opts) => {
+    return {
+        method: 'post',
+        path: `${baseUrl}/getList`,
+        data,
+        opts
+    }
 }
