@@ -17,7 +17,18 @@ import directives from './directives/global/'
 // 全局过滤器
 import filters from './filters/global/'
 
-Vue.use(Http)
+Vue.use(Http, {
+    apiInit: {
+        codeSuccessValue: 0,
+        proxyPath: process.env.VUE_APP_ROOT_PATH,
+        apiErrorCallback: (code, msg) => {
+            console.log(`apiErrorCallback 错误码：${code} ，错误消息：${msg}`)
+        },
+        apiCatchCallback: (code, msg) => {
+            console.log(`apiCatchCallback 错误码：${code} ，错误消息：${msg}`)
+        }
+    }
+})
 
 // 自动注册插件
 Vue.use({

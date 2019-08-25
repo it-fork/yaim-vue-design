@@ -4,7 +4,6 @@
     </div>
 </template>
 <script>
-    import * as test from '@/apis/test'
     export default {
         name: 'App',
         data () {
@@ -12,11 +11,7 @@
         },
         created () {
             this.$root.log(this.$store)
-            this.$http.get(test.testApi).then((data) => {
-                this.$root.log(data, 'table', 'testApi then')
-            }).catch((err) => {
-                this.$root.log(err, 'error', 'testApi catch')
-            })
+            this.$root.log(process.env)
         },
         methods: {
             /**

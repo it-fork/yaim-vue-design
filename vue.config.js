@@ -6,9 +6,21 @@
 const path = require('path')
 let proxyApi = {}
 if (process.env.NODE_ENV === 'development') {
-    proxyApi = require('./.env.local')
+    try{
+        proxyApi = require('./proxyTarget')
+    }catch (e) {}
 }
 console.log('proxyApi', proxyApi)
+const proxyList = {}
+Object.keys(proxyApi).forEach((path) => {
+    proxyList[`/${path}`] = {
+        target: proxyApi[path],
+        pathRewrite: {
+            [`^/${path}`]: ''
+        },
+        changeOrigin: true
+    }
+})
 function resolve (dir) {
     return path.join(__dirname, dir)
 }
@@ -21,13 +33,14 @@ module.exports = {
         port: '8001',
         hot: true,
         proxy: {
-            '/proxyApi': {
-                target: proxyApi.target || 'https://api.github.com',
+            '/githubApi': {
+                target: 'https://api.github.com',
                 pathRewrite: {
-                    '^/proxyApi': ''
+                    '^/githubApi': ''
                 },
                 changeOrigin: true
-            }
+            },
+            ...proxyList
         },
         overlay: {
             warnings: true,

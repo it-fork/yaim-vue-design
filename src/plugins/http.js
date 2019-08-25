@@ -3,32 +3,36 @@
  * @date 2019/3/3
  * @Description
  */
-import {
-    msgField,
-    codeField,
-    proxyPath,
-    codeSuccessValue,
-    codeErrorValue,
-    apiErrorCallback,
-    apiCatchCallback
-} from '@/configs/api'
 import axios from 'axios'
+
 class Http {
     axios = null
     config = {
-        msgField: msgField || 'msg',
-        codeField: codeField || 'code',
-        proxyPath: proxyPath || '/proxyApi',
-        codeSuccessValue: codeSuccessValue !== undefined ? codeSuccessValue : 200,
-        codeErrorValue: codeErrorValue !== undefined ? codeErrorValue : 1
+        msgField: 'msg',
+        codeField: 'code',
+        dataField: 'data',
+        proxyPath: '/proxyApi',
+        codeSuccessValue: 200,
+        codeErrorValue: 1,
+        apiErrorCallback: () => {
+            console.log('apiErrorCallback')
+        },
+        apiCatchCallback: () => {
+            console.log('apiCatchCallback')
+        }
     }
-    constructor (options = {}) {
+
+    constructor (options = {}, config = {}) {
         this.axios = axios.create({
             ...options
         })
+        Object.keys(config).forEach((key) => {
+            this.config[key] = config[key]
+        })
     }
+
     fetch ({ method, path, data = {}, options = {} } = {}) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.axios({
                 method: method,
                 url: `${this.config.proxyPath}${path}`,
@@ -36,39 +40,44 @@ class Http {
                 ...options
             }).then(({ data }) => {
                 if (data[this.config.codeField] !== this.config.codeSuccessValue) {
-                    apiErrorCallback(data[this.config.codeField], data[this.config.msgField])
+                    this.config.apiErrorCallback(data[this.config.codeField], data[this.config.msgField])
                 } else {
-                    resolve(data)
+                    resolve(data[this.config.dataField])
                 }
             }).catch((e) => {
                 if (e.response) {
                     if (e.response.status) {
-                        apiCatchCallback(e.response.status, e.response.statusText)
+                        this.config.apiCatchCallback(e.response.status, e.response.statusText)
                     }
                 }
             })
         })
     }
+
     get ({ path, data = {}, options } = {}) {
         return new Promise((resolve, reject) => {
             this.fetch({ method: 'get', path, data, options }).then(resolve).catch(reject)
         })
     }
+
     post ({ path, data = {}, options } = {}) {
         return new Promise((resolve, reject) => {
             this.fetch({ method: 'post', path, data, options }).then(resolve).catch(reject)
         })
     }
+
     delete ({ path, data = {}, options } = {}) {
         return new Promise((resolve, reject) => {
             this.fetch({ method: 'delete', path, data, options }).then(resolve).catch(reject)
         })
     }
+
     put ({ path, data = {}, options } = {}) {
         return new Promise((resolve, reject) => {
             this.fetch({ method: 'put', path, data, options }).then(resolve).catch(reject)
         })
     }
+
     patch ({ path, data = {}, options } = {}) {
         return new Promise((resolve, reject) => {
             this.fetch({ method: 'patch', path, data, options }).then(resolve).catch(reject)
@@ -77,8 +86,9 @@ class Http {
 }
 
 export default {
-    install (Vue, options) {
+    install (Vue, { axiosInit = {}, apiInit = {} } = {}) {
+        // console.log("install", axiosInit, apiInit);
         Vue.prototype.Http = Http
-        Vue.prototype.$http = new Http()
+        Vue.prototype.$http = new Http(axiosInit, apiInit)
     }
 }
