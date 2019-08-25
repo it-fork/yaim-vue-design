@@ -13,11 +13,6 @@
         name: 'test-component',
         components: {
             HelloWord
-        },
-        computed: {},
-        created () {
-            // console.log(this.testUpdateMsg('update test msg'))
-        },
-        methods: {}
+        }
     }
 </script>

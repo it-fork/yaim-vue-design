@@ -5,6 +5,6 @@
  */
 export default {
     inserted (el) {
-        el.focus()
+        el.setAttribute('placeholder', '请输入...来自指令的修改')
     }
 }
