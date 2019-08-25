@@ -39,6 +39,7 @@ Vue.use({
         })
         // 注册全局过滤器
         Object.keys(filters).forEach((filterName) => {
+            // console.log('register filter', filterName, filters[filterName])
             Vue.filter(filterName, filters[filterName])
         })
         // 注册全局组件
