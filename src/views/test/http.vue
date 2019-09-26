@@ -18,10 +18,11 @@
                 this.$log.echo('test', 'msg', 'log')
             },
             async testApi () {
+                // this.$log.echo(this.$http, 'testApi this.$http', 'log')
                 const result = await this.$http.post('/ittlrApi', {
                     id: 1
                 })
-                this.$log.echo(result, 'testApi', 'log')
+                this.$log.echo(result, 'testApi result', 'log')
             }
         }
     }

@@ -21,7 +21,7 @@ import filters from './filters/global/'
  * 安装全局插件
  */
 Object.keys(plugins).forEach((name) => {
-    Vue.use(plugins[name].plugin)
+    Vue.use(plugins[name].plugin, plugins[name].options)
 })
 
 // 自动注册插件

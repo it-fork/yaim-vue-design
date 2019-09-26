@@ -34,7 +34,7 @@ export default class Config {
     /**
      * 初始化
      */
-    constructor ({ axiosConfig, httpConfig } = {}) {
+    constructor ({ axiosConfig, httpConfig, requestInterceptorsReslove, requestInterceptorsReject, responseInterceptorsReslove, responseInterceptorsReject } = {}) {
         if (axiosConfig && axiosConfig.constructor === Object) {
             this.setAxios(axiosConfig)
         } else {
@@ -46,6 +46,7 @@ export default class Config {
         } else {
             this.initHttp()
         }
+        this.configInterceptors({ requestInterceptorsReslove, requestInterceptorsReject, responseInterceptorsReslove, responseInterceptorsReject })
     }
 
     /**
@@ -61,20 +62,45 @@ export default class Config {
     /**
      * 请求拦截器函数
      */
-    get requestInterceptors () {
+    get requestInterceptorsReslove () {
         if (this.interceptors && this.interceptors.request && typeof this.interceptors.request === 'function') {
             return this.interceptors.request
         }
-        return () => {
+        return function (response) {
             // console.warn('requestInterceptors')
+            return response
+        }
+    }
+    /**
+     * 请求拦截器函数
+     */
+    get requestInterceptorsReject () {
+        if (this.interceptors && this.interceptors.request && typeof this.interceptors.request === 'function') {
+            return this.interceptors.request
+        }
+        return function (response) {
+            // console.warn('requestInterceptors')
+            return response
         }
     }
     /**
      * 响应拦截器函数
      */
-    get responseInterceptors () {
-        if (this.interceptors && this.interceptors.request && typeof this.interceptors.request === 'function') {
-            return this.interceptors.request
+    get responseInterceptorsReslove () {
+        if (this.interceptors && this.interceptors.response && typeof this.interceptors.response === 'function') {
+            return this.interceptors.response
+        }
+        return (config) => {
+            // console.warn('responseInterceptors')
+            return config
+        }
+    }
+    /**
+     * 响应拦截器函数
+     */
+    get responseInterceptorsReject () {
+        if (this.interceptors && this.interceptors.response && typeof this.interceptors.response === 'function') {
+            return this.interceptors.response
         }
         return () => {
             // console.warn('responseInterceptors')
@@ -86,9 +112,11 @@ export default class Config {
      * @param {function} requestInterceptors
      * @param {function} responseInterceptors
      */
-    configInterceptors (requestInterceptors, responseInterceptors) {
-        this.interceptors.request = requestInterceptors
-        this.interceptors.response = responseInterceptors
+    configInterceptors ({ requestInterceptorsReslove, requestInterceptorsReject, responseInterceptorsReslove, responseInterceptorsReject } = {}) {
+        this.interceptors.requestReslove = requestInterceptorsReslove
+        this.interceptors.requestReject = requestInterceptorsReject
+        this.interceptors.responseReslove = responseInterceptorsReslove
+        this.interceptors.responseReject = responseInterceptorsReject
         this.setInterceptors()
         return this
     }
@@ -98,8 +126,9 @@ export default class Config {
      */
     setInterceptors () {
         if (this.axios) {
-            this.axios.interceptors.request.use(this.requestInterceptors)
-            this.axios.interceptors.response.use(this.responseInterceptors)
+            // console.log('setInterceptors', this.responseInterceptors)
+            this.axios.interceptors.request.use(this.requestInterceptorsReslove, this.interceptors.requestReject)
+            this.axios.interceptors.response.use(this.interceptors.responseReslove, this.interceptors.responseReject)
         }
         return this
     }
@@ -117,7 +146,7 @@ export default class Config {
      * @param {object} config
      */
     setAxios (config = {}) {
-        this.aixos = axios.create(config)
+        this.axios = axios.create(config)
         return this
     }
 

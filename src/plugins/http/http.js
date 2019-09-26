@@ -57,6 +57,11 @@ export default class Http extends Config {
             [`${paramKey}`]: data,
             ...options
         })
-        return result
+        return this.formatData(result)
+    }
+
+    async formatData (result) {
+        console.log('fetch', result)
+        return result.data
     }
 }

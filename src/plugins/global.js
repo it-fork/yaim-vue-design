@@ -3,9 +3,18 @@ import Http from './http/index'
 
 export default {
     log: {
-        plugin: Log
+        plugin: Log,
+        options: () => {
+            return true
+        }
     },
     http: {
-        plugin: Http
+        plugin: Http,
+        options: {
+            responseInterceptorsReslove: (response) => {
+                console.log('response', response)
+                return response
+            }
+        }
     }
 }
