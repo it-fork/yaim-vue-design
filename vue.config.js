@@ -6,15 +6,16 @@
 const path = require('path')
 let proxyApi = {}
 if (process.env.NODE_ENV === 'development') {
-    try{
+    try {
         proxyApi = require('./proxyTarget')
-    }catch (e) {}
+    } catch (e) { }
 }
 console.log('proxyApi', proxyApi)
 const proxyList = {}
 Object.keys(proxyApi).forEach((path) => {
     proxyList[`/${path}`] = {
         target: proxyApi[path],
+        secure: false,
         pathRewrite: {
             [`^/${path}`]: ''
         },
@@ -35,6 +36,7 @@ module.exports = {
         proxy: {
             '/githubApi': {
                 target: 'https://api.github.com',
+                secure: false,
                 pathRewrite: {
                     '^/githubApi': ''
                 },

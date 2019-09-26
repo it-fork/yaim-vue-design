@@ -5,6 +5,24 @@
 </template>
 <script>
     export default {
-        name: 'test-http'
+        name: 'test-http',
+        data () {
+            return {}
+        },
+        created () {
+            // this.testLog()
+            this.testApi()
+        },
+        methods: {
+            testLog () {
+                this.$log.echo('test', 'msg', 'log')
+            },
+            async testApi () {
+                const result = await this.$http.post('/ittlrApi', {
+                    id: 1
+                })
+                this.$log.echo(result, 'testApi', 'log')
+            }
+        }
     }
 </script>
