@@ -61,7 +61,6 @@ export default class Http extends Config {
     }
 
     async formatData (result) {
-        console.log('fetch', result)
         return result.data
     }
 }

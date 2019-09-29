@@ -40,7 +40,6 @@ export default class Config {
         } else {
             this.initAxios()
         }
-
         if (httpConfig && httpConfig.constructor === Object) {
             this.setHttp(httpConfig)
         } else {
@@ -63,8 +62,8 @@ export default class Config {
      * 请求拦截器函数
      */
     get requestInterceptorsReslove () {
-        if (this.interceptors && this.interceptors.request && typeof this.interceptors.request === 'function') {
-            return this.interceptors.request
+        if (this.interceptors && this.interceptors.requestReslove && typeof this.interceptors.requestReslove === 'function') {
+            return this.interceptors.requestReslove
         }
         return function (response) {
             // console.warn('requestInterceptors')
@@ -75,8 +74,8 @@ export default class Config {
      * 请求拦截器函数
      */
     get requestInterceptorsReject () {
-        if (this.interceptors && this.interceptors.request && typeof this.interceptors.request === 'function') {
-            return this.interceptors.request
+        if (this.interceptors && this.interceptors.requestReject && typeof this.interceptors.requestReject === 'function') {
+            return this.interceptors.requestReject
         }
         return function (response) {
             // console.warn('requestInterceptors')
@@ -87,8 +86,8 @@ export default class Config {
      * 响应拦截器函数
      */
     get responseInterceptorsReslove () {
-        if (this.interceptors && this.interceptors.response && typeof this.interceptors.response === 'function') {
-            return this.interceptors.response
+        if (this.interceptors && this.interceptors.responseReslove && typeof this.interceptors.responseReslove === 'function') {
+            return this.interceptors.responseReslove
         }
         return (config) => {
             // console.warn('responseInterceptors')
@@ -99,8 +98,8 @@ export default class Config {
      * 响应拦截器函数
      */
     get responseInterceptorsReject () {
-        if (this.interceptors && this.interceptors.response && typeof this.interceptors.response === 'function') {
-            return this.interceptors.response
+        if (this.interceptors && this.interceptors.responseReject && typeof this.interceptors.responseReject === 'function') {
+            return this.interceptors.responseReject
         }
         return () => {
             // console.warn('responseInterceptors')

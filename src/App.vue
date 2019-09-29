@@ -9,10 +9,6 @@
         data () {
             return {}
         },
-        created () {
-            this.$root.log(this.$store)
-            this.$root.log(process.env)
-        },
         methods: {
             /**
              * 测试功能
